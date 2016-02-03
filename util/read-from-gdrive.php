@@ -31,14 +31,14 @@
 
 $data = array(
 	'program' => array(
-		'key' => '0Auqwt8Hmhr0pdFRiR0hWWWRqRXVUSDVUY2RFYmRzZ0E',
-		'gid' => '0',
-		'tgt' => '../data/finncon2013/program.js'
+		'key' => '1cM4E_K9aZRdPBRdOihihW9EMMIWGtwFljfWXRkueuxw',
+		'gid' => '1669494383',
+		'tgt' => '../dist/data/solmukohta2016/program.js'
 	),
 	'people' => array(
-		'key' => '0Auqwt8Hmhr0pdFRiR0hWWWRqRXVUSDVUY2RFYmRzZ0E',
-		'gid' => '1',
-		'tgt' => '../data/finncon2013/people.js'
+		'key' => '1cM4E_K9aZRdPBRdOihihW9EMMIWGtwFljfWXRkueuxw',
+		'gid' => '1508622364',
+		'tgt' => '../dist/data/solmukohta2016/people.js'
 	)
 );
 
@@ -67,5 +67,8 @@ foreach ($data as $k => $v) {
 	gdrive2konopas($k, $v);
 	echo "ok.\n"; flush();
 }
+echo "\nFixing surplus line feeds...";
+file_put_contents($data['program']['tgt'], str_replace('"id":"\n', '"id":"', file_get_contents($data['program']['tgt'])));
+echo "ok.\n"; flush();
 echo "\n" . update_cache_manifest($cache_manifest);
 echo "\nAll done.\n";
